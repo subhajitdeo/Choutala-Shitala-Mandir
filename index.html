@@ -1,10 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Temple Website</title>
+    <title>Temple Transition</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <style>
         * {
             margin: 0;
@@ -15,54 +15,52 @@
         body {
             height: 400vh; /* controls scroll length */
             font-family: system-ui, -apple-system, sans-serif;
-            background: #FFE3C6; /* Initial Background Color */
-            overflow-x: hidden;
+            background: #FF3C6; /* Initial Background Color */
             transition: background-color 0.8s ease-out; /* Smooth Background Transition */
         }
 
-        .content {
-            position: relative;
-            margin-top: 300vh; /* Scroll Position for Content */
-            color: #8B0000; /* Text Color */
-            padding: 4rem 1.5rem;
-        }
-
-        h1, h2, p {
+        h1 {
+            color: #8B0000; /* Initial Text Color */
             opacity: 1; /* Start fully visible */
             transition: opacity 0.8s ease-out; /* Smooth Fade-Out */
+            position: fixed;
+            top: 50%; /* Centrally position the text */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 6vw; /* Responsive font size */
+            text-align: center; /* Center the text */
+            line-height: 1.2; /* Better spacing */
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 4rem; /* Larger font size for desktops */
+            }
         }
     </style>
 </head>
 
 <body>
-
-    <div class="content">
-        <h1>Shri Temple</h1>
-        <h2>A sacred space for devotion, peace, and timeless tradition.</h2>
-        <div>
-            <strong>Darshan:</strong> 5:30 AM – 12:00 PM<br>
-            <strong>Evening Aarti:</strong> 6:45 PM
-        </div>
-    </div>
+    <h1>ॐ नमः शिवाय</h1>
 
     <script>
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
-            const progress = Math.min(scrollY / (window.innerHeight * 2), 1);
+            const maxScroll = window.innerHeight * 2; // Total scrollable area
+            const progress = Math.min(scrollY / maxScroll, 1);
 
-            // Change background color to lighter version
-            document.body.style.backgroundColor = `rgba(255, 224, 198, ${1 - progress})`;
-
+            // Change background color smoothly to #FFF0E1 
+            const r = Math.floor(255 * progress + 255 * (1 - progress)); // transitions to RGB
+            const g = Math.floor(60 + (240 - 60) * progress); // transition for green
+            const b = Math.floor(198 - (198 - 225) * progress); // transition for blue
+            
+            document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`; // Smooth background transition
+            
             // Fade out text
-            const contentElements = document.querySelectorAll('.content h1, .content h2, .content strong');
-            contentElements.forEach(el => {
-                el.style.opacity = 1 - progress; // Fade-out effect
-            });
+            const title = document.querySelector('h1');
+            title.style.opacity = 1 - progress; // Fade-out effect
         });
     </script>
-
 </body>
 </html>
-
-
 
