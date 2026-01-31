@@ -52,34 +52,35 @@
                 font-size: 4rem; /* Larger font size for desktops */
             }
         }
+
+        .normal-heading {
+            position: absolute;
+            top: 80%; /* Position for the normal heading */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5vw; /* Responsive font size */
+            color: #000; /* Color of the heading */
+            opacity: 1; /* Fully visible */
+            white-space: nowrap;
+        }
+
+        @media (max-width: 480px) {
+            .normal-heading {
+                font-size: 7vw; /* Larger on small phones */
+            }
+        }
+
+        @media (min-width: 769px) {
+            .normal-heading {
+                font-size: 2rem; /* Normal heading for desktops */
+            }
+        }
     </style>
-    .normal-heading {
-    position: absolute;
-    top: 80%; /* Adjust the position as needed */
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 5vw; /* Responsive font size */
-    color: #000; /* Color of the heading */
-    opacity: 1; /* Fully visible */
-    white-space: nowrap;
-}
-
-@media (max-width: 480px) {
-    .normal-heading {
-        font-size: 7vw; /* Larger on small phones */
-    }
-}
-
-@media (min-width: 769px) {
-    .normal-heading {
-        font-size: 2rem; /* Normal heading for desktops */
-    }
-}
-
 </head>
 
 <body>
     <h1>ॐ नमः शिवाय</h1>
+    <div class="normal-heading">শ্রীশ্রী শীতলা মায়ের মন্দির</div>
 
     <script>
         window.addEventListener('scroll', () => {
@@ -104,6 +105,6 @@
             title.style.opacity = 1 - progress; // Fade-out effect
         });
     </script>
-    <div class="normal-heading">শ্রীশ্রী শীতলা মায়ের মন্দির</div>
 </body>
 </html>
+
