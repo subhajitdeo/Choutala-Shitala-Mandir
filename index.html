@@ -1,117 +1,107 @@
-index.html
-style.css
-script.js
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Temple</title>
-  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .intro, .om-section {
+      background: radial-gradient(circle at top, #111 0%, #000 70%);
+      color: white;
+    }
+
+    .intro h1 {
+      font-size: 3rem;
+      opacity: 0;
+      animation: textFade 3s ease forwards;
+    }
+
+    .om {
+      font-size: 6rem;
+      animation: omGlow 3s infinite alternate;
+    }
+
+    .temple {
+      background: #f5f5f5;
+      color: #111;
+      opacity: 0;
+      transform: translateY(100px);
+      transition: 1.2s ease;
+    }
+
+    .temple.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes textFade {
+      0% { opacity: 0; }
+      30% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes omGlow {
+      from {
+        transform: scale(1);
+        text-shadow: 0 0 10px #fff;
+      }
+      to {
+        transform: scale(1.1);
+        text-shadow: 0 0 30px gold;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-  <!-- Section 1: Text -->
   <section class="intro">
     <h1>ॐ नमः शिवाय</h1>
   </section>
 
-  <!-- Section 2: Om Symbol -->
   <section class="om-section">
     <div class="om">ॐ</div>
   </section>
 
-  <!-- Section 3: Temple -->
   <section class="temple">
     <h2>Welcome to Our Temple</h2>
     <p>Peace • Devotion • Faith</p>
   </section>
 
-  <script src="script.js"></script>
+  <script>
+    const temple = document.querySelector('.temple');
+
+    window.addEventListener('scroll', () => {
+      const top = temple.getBoundingClientRect().top;
+      const height = window.innerHeight;
+
+      if (top < height - 100) {
+        temple.classList.add('show');
+      }
+    });
+  </script>
+
 </body>
 </html>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Segoe UI', sans-serif;
-  overflow-x: hidden;
-}
-
-/* All sections fullscreen */
-section {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-/* 🌌 Space background */
-.intro, .om-section {
-  background: radial-gradient(circle at top, #111 0%, #000 70%);
-  color: white;
-}
-
-/* Intro text */
-.intro h1 {
-  font-size: 3rem;
-  opacity: 0;
-  animation: textFade 3s ease forwards;
-}
-
-/* Om symbol */
-.om {
-  font-size: 6rem;
-  animation: omGlow 3s infinite alternate;
-}
-
-/* Temple section */
-.temple {
-  background: #f5f5f5;
-  color: #111;
-  text-align: center;
-  transform: translateY(100px);
-  opacity: 0;
-  transition: 1.2s ease;
-}
-
-.temple.show {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* Animations */
-@keyframes textFade {
-  0% { opacity: 0; }
-  30% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes omGlow {
-  from {
-    transform: scale(1);
-    text-shadow: 0 0 10px #fff;
-  }
-  to {
-    transform: scale(1.1);
-    text-shadow: 0 0 30px #ffd700;
-  }
-}
-
-const templeSection = document.querySelector('.temple');
-
-window.addEventListener('scroll', () => {
-  const sectionTop = templeSection.getBoundingClientRect().top;
-  const screenHeight = window.innerHeight;
-
-  if (sectionTop < screenHeight - 100) {
-    templeSection.classList.add('show');
-  }
-});
-
-
