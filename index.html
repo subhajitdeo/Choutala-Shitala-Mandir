@@ -1,166 +1,117 @@
+index.html
+style.css
+script.js
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Om Animation</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(135deg, #001a4d 0%, #003d7a 50%, #001a4d 100%);
-            overflow: hidden;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Stars background */
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        .star {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% {
-                opacity: 0.3;
-            }
-            50% {
-                opacity: 1;
-            }
-        }
-
-        /* Om symbol container */
-        .om-container {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
-
-        /* Om symbol */
-        .om {
-            font-size: 150px;
-            font-weight: bold;
-            color: #ffd700;
-            text-shadow: 
-                0 0 20px rgba(255, 215, 0, 0.8),
-                0 0 40px rgba(255, 215, 0, 0.5),
-                0 0 60px rgba(255, 107, 107, 0.3);
-            animation: slideInFromLeft 4s ease-in-out forwards, glow 3s ease-in-out infinite;
-            opacity: 0;
-        }
-
-        /* Slide from left (from space) */
-        @keyframes slideInFromLeft {
-            0% {
-                transform: translateX(-150vw) scale(0.5);
-                opacity: 0;
-                filter: blur(10px);
-            }
-            50% {
-                opacity: 1;
-                filter: blur(0px);
-            }
-            100% {
-                transform: translateX(0) scale(1);
-                opacity: 1;
-                filter: blur(0px);
-            }
-        }
-
-        /* Glow effect */
-        @keyframes glow {
-            0%, 100% {
-                text-shadow: 
-                    0 0 20px rgba(255, 215, 0, 0.8),
-                    0 0 40px rgba(255, 215, 0, 0.5),
-                    0 0 60px rgba(255, 107, 107, 0.3);
-            }
-            50% {
-                text-shadow: 
-                    0 0 30px rgba(255, 215, 0, 1),
-                    0 0 60px rgba(255, 215, 0, 0.8),
-                    0 0 90px rgba(255, 107, 107, 0.5);
-            }
-        }
-
-        /* Optional: Repeat animation */
-        .om.repeat {
-            animation: slideInFromLeft 4s ease-in-out infinite 2s, glow 3s ease-in-out infinite;
-        }
-
-        .info {
-            position: absolute;
-            bottom: 30px;
-            color: white;
-            text-align: center;
-            font-size: 14px;
-            opacity: 0.7;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Temple</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Stars background -->
-    <div class="stars" id="starsContainer"></div>
 
-    <!-- Om animation -->
-    <div class="om-container">
-        <div class="om">ॐ</div>
-    </div>
+  <!-- Section 1: Text -->
+  <section class="intro">
+    <h1>ॐ नमः शिवाय</h1>
+  </section>
 
-    <div class="info">
-        <p>Om (ॐ) - The Divine Sound</p>
-    </div>
+  <!-- Section 2: Om Symbol -->
+  <section class="om-section">
+    <div class="om">ॐ</div>
+  </section>
 
-    <script>
-        // Generate random stars
-        function generateStars() {
-            const starsContainer = document.getElementById('starsContainer');
-            const starCount = 100;
+  <!-- Section 3: Temple -->
+  <section class="temple">
+    <h2>Welcome to Our Temple</h2>
+    <p>Peace • Devotion • Faith</p>
+  </section>
 
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 3 + 's';
-                starsContainer.appendChild(star);
-            }
-        }
-
-        // Initialize
-        generateStars();
-
-        // Optional: Add click to repeat animation
-        const omElement = document.querySelector('.om');
-        omElement.addEventListener('click', function() {
-            this.style.animation = 'none';
-            setTimeout(() => {
-                this.style.animation = 'slideInFromLeft 4s ease-in-out forwards, glow 3s ease-in-out infinite';
-            }, 10);
-        });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+}
+
+/* All sections fullscreen */
+section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* 🌌 Space background */
+.intro, .om-section {
+  background: radial-gradient(circle at top, #111 0%, #000 70%);
+  color: white;
+}
+
+/* Intro text */
+.intro h1 {
+  font-size: 3rem;
+  opacity: 0;
+  animation: textFade 3s ease forwards;
+}
+
+/* Om symbol */
+.om {
+  font-size: 6rem;
+  animation: omGlow 3s infinite alternate;
+}
+
+/* Temple section */
+.temple {
+  background: #f5f5f5;
+  color: #111;
+  text-align: center;
+  transform: translateY(100px);
+  opacity: 0;
+  transition: 1.2s ease;
+}
+
+.temple.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Animations */
+@keyframes textFade {
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes omGlow {
+  from {
+    transform: scale(1);
+    text-shadow: 0 0 10px #fff;
+  }
+  to {
+    transform: scale(1.1);
+    text-shadow: 0 0 30px #ffd700;
+  }
+}
+
+const templeSection = document.querySelector('.temple');
+
+window.addEventListener('scroll', () => {
+  const sectionTop = templeSection.getBoundingClientRect().top;
+  const screenHeight = window.innerHeight;
+
+  if (sectionTop < screenHeight - 100) {
+    templeSection.classList.add('show');
+  }
+});
+
+
