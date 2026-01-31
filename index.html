@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,17 +48,19 @@
             const maxScroll = window.innerHeight * 2; // Total scrollable area
             const progress = Math.min(scrollY / maxScroll, 1);
 
-            // Smooth transition for background colors without excessive pink
+            // Define start and end colors
             const startColor = { r: 255, g: 60, b: 198 }; // #FF3C6 RGB
             const endColor = { r: 255, g: 240, b: 225 }; // #FFF0E1 RGB
             
+            // Interpolating colors based on scroll progress
             const r = Math.floor(startColor.r + (endColor.r - startColor.r) * progress);
             const g = Math.floor(startColor.g + (endColor.g - startColor.g) * progress);
             const b = Math.floor(startColor.b + (endColor.b - startColor.b) * progress);
             
-            document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`; // Smooth background transition
-
-            // Fade out text
+            // Update background color smoothly
+            document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`; 
+            
+            // Fade out the text
             const title = document.querySelector('h1');
             title.style.opacity = 1 - progress; // Fade-out effect
         });
