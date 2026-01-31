@@ -1,27 +1,68 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shri Temple</title>
+    <meta charset="UTF-8" />
+    <title>Temple Website</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: #FFE3C6; /* Light peach color */
-            color: #8B0000; /* Deep maroon */
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
+            height: 400vh; /* controls scroll length */
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #FFE3C6; /* Initial Background Color */
+            overflow-x: hidden;
+            transition: background-color 0.8s ease-out; /* Smooth Background Transition */
+        }
+
+        .content {
+            position: relative;
+            margin-top: 300vh; /* Scroll Position for Content */
+            color: #8B0000; /* Text Color */
+            padding: 4rem 1.5rem;
+        }
+
+        h1, h2, p {
+            opacity: 1; /* Start fully visible */
+            transition: opacity 0.8s ease-out; /* Smooth Fade-Out */
         }
     </style>
 </head>
+
 <body>
-    <h1>Shri Temple</h1>
-    <div>
-        <h2>Darshan Timings</h2>
-        <p>Morning: 5:30 AM - 12:00 PM</p>
-        <p>Evening Aarti: 6:45 PM</p>
+
+    <div class="content">
+        <h1>Shri Temple</h1>
+        <h2>A sacred space for devotion, peace, and timeless tradition.</h2>
+        <div>
+            <strong>Darshan:</strong> 5:30 AM – 12:00 PM<br>
+            <strong>Evening Aarti:</strong> 6:45 PM
+        </div>
     </div>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const progress = Math.min(scrollY / (window.innerHeight * 2), 1);
+
+            // Change background color to lighter version
+            document.body.style.backgroundColor = `rgba(255, 224, 198, ${1 - progress})`;
+
+            // Fade out text
+            const contentElements = document.querySelectorAll('.content h1, .content h2, .content strong');
+            contentElements.forEach(el => {
+                el.style.opacity = 1 - progress; // Fade-out effect
+            });
+        });
+    </script>
+
 </body>
 </html>
+
+
 
