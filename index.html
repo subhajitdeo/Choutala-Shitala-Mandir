@@ -1,70 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Temple Transition</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrolling Color Fade</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            height: 400vh; /* controls scroll length */
-            font-family: system-ui, -apple-system, sans-serif;
-            background: #FF3C6; /* Initial Background Color */
-            transition: background-color 0.8s ease-out; /* Smooth Background Transition */
+            margin: 0;
+            height: 200vh; /* Increase height for scrolling effect */
+            background: linear-gradient(#FFFAF0, #FFF0E1);
+            color: black;
+            transition: color 0.5s ease;
         }
-
         h1 {
-            color: #8B0000; /* Initial Text Color */
-            opacity: 1; /* Start fully visible */
-            transition: opacity 0.8s ease-out; /* Smooth Fade-Out */
+            opacity: 1;
+            transition: opacity 0.5s ease;
             position: fixed;
-            top: 50%; /* Centrally position the text */
+            top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 6vw; /* Responsive font size */
-            text-align: center; /* Center the text */
-            line-height: 1.2; /* Better spacing */
+            font-size: 3em;
         }
-
-        @media (min-width: 768px) {
-            h1 {
-                font-size: 4rem; /* Larger font size for desktops */
-            }
+        /* Fade effect based on scroll position */
+        body.scrolled h1 {
+            opacity: 0; /* Fade out text on scroll */
         }
     </style>
 </head>
-
-<body>
-    <h1>ॐ नमः शिवाय</h1>
-
+<body onscroll="handleScroll()">
+    <h1>Scroll to Fade</h1>
     <script>
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const maxScroll = window.innerHeight * 2; // Total scrollable area
-            const progress = Math.min(scrollY / maxScroll, 1);
+        function handleScroll() {
+            const scrollPosition = window.scrollY;
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            const body = document.body;
 
-            // Define start and end colors
-            const startColor = { r: 255, g: 60, b: 198 }; // #FF3C6 RGB
-            const endColor = { r: 255, g: 250, b: 240 }; // #FFFAF0 RGB
-            
-            // Interpolating colors based on scroll progress
-            const r = Math.floor(startColor.r + (endColor.r - startColor.r) * progress);
-            const g = Math.floor(startColor.g + (endColor.g - startColor.g) * progress);
-            const b = Math.floor(startColor.b + (endColor.b - startColor.b) * progress);
-            
-            // Update background color smoothly
-            document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`; 
-            
-            // Fade out the text
-            const title = document.querySelector('h1');
-            title.style.opacity = 1 - progress; // Fade-out effect
-        });
+            // Add class based on scroll position
+            if (scrollPosition > 0) {
+                body.classList.add('scrolled');
+            } else {
+                body.classList.remove('scrolled');
+            }
+        }
     </script>
 </body>
 </html>
-
