@@ -1,83 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Temple Transition</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choutala Shitala Mandir</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
         body {
-            height: 400vh; /* controls scroll length */
-            font-family: system-ui, -apple-system, sans-serif;
-            background: #FFFAF0; /* Initial Background Color - Cream */
-            transition: background-color 0.8s ease-out; /* Smooth Background Transition */
+            background: linear-gradient(to bottom, #FFF0E1, #FFFAF0);
+            font-family: Arial, sans-serif;
         }
-
-        @media (max-width: 768px) {
-            body {
-                height: 200vh; /* Mobile - less scrolling needed */
-            }
-        }
-
-        h1 {
-            color: #8B0000; /* Initial Text Color */
-            opacity: 1; /* Start fully visible */
-            transition: opacity 0.8s ease-out; /* Smooth Fade-Out */
-            position: fixed;
-            top: 50%; /* Centrally position the text */
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 6vw; /* Responsive font size */
-            text-align: center; /* Center the text */
-            line-height: 1.2; /* Better spacing */
-            padding: 20px;
-            max-width: 90vw;
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 10vw; /* Larger on small phones */
-            }
-        }
-
-        @media (min-width: 769px) {
-            h1 {
-                font-size: 4rem; /* Larger font size for desktops */
+        @media (max-width: 600px) {
+            .sanskrit {
+                display: block;
+                text-align: center;
             }
         }
     </style>
 </head>
-
 <body>
-    <h1>ॐ नमः शिवाय</h1>
-
-    <script>
-        window.addEventListener('scroll', () => {
-            const scrollY = window.scrollY;
-            const maxScroll = document.body.scrollHeight - window.innerHeight; // Total scrollable area
-            const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1); // Clamp between 0 and 1
-
-            // Define start and end colors
-            const startColor = { r: 255, g: 250, b: 240 }; // #FFFAF0 RGB
-            const endColor = { r: 255, g: 240, b: 225 }; // #FFF0E1 RGB
-            
-            // Interpolating colors based on scroll progress
-            const r = Math.floor(startColor.r + (endColor.r - startColor.r) * progress);
-            const g = Math.floor(startColor.g + (endColor.g - startColor.g) * progress);
-            const b = Math.floor(startColor.b + (endColor.b - startColor.b) * progress);
-            
-            // Update background color smoothly
-            document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`; 
-            
-            // Fade out the text
-            const title = document.querySelector('h1');
-            title.style.opacity = 1 - progress; // Fade-out effect
-        });
-    </script>
+    <div class="sanskrit">शीतला माता की जय</div>
 </body>
 </html>
