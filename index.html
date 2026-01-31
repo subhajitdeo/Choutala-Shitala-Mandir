@@ -29,7 +29,7 @@
             opacity: 1; /* Start fully visible */
             transition: opacity 0.8s ease-out; /* Smooth Fade-Out */
             position: fixed;
-            top: 50%; /* Centrally position the text */
+            top: 40%; /* Centrally position the text */
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 6vw; /* Responsive font size */
@@ -54,19 +54,42 @@
         }
 
         .normal-heading {
-            position: absolute;
-            top: 80%; /* Position for the normal heading */
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: fixed;
+            top: 75%; /* Start appearing when the transition nears end */
+            left: 10%; /* Start from the left side */
+            transform: translateY(-50%);
             font-size: 5vw; /* Responsive font size */
             color: #000; /* Color of the heading */
-            opacity: 1; /* Fully visible */
+            opacity: 0; /* Start with no visibility */
+            transition: opacity 0.8s ease-out; /* Smooth visibility transition */
             white-space: nowrap;
+            
+            /* New styles for stylish underline */
+            position: relative;
+            display: inline-block;
+        }
+
+        .normal-heading::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 4px; /* Underline thickness */
+            bottom: -10px; /* Position of underline */
+            left: 0;
+            background-color: #8B0000; /* Underline color */
+            transition: width 0.5s ease-in-out, opacity 0.8s ease-out;
+            opacity: 0;
+        }
+
+        .normal-heading.show::after {
+            width: 100%;
+            opacity: 1;
         }
 
         @media (max-width: 480px) {
             .normal-heading {
                 font-size: 7vw; /* Larger on small phones */
+                left: 5%; /* Adjust for smaller screens */
             }
         }
 
@@ -100,9 +123,19 @@
             // Update background color smoothly
             document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`; 
             
-            // Fade out the text
+            // Fade out the first title
             const title = document.querySelector('h1');
             title.style.opacity = 1 - progress; // Fade-out effect
+
+            // Control the appearance of the new title
+            const normalTitle = document.querySelector('.normal-heading');
+            if (progress > 0.75) {
+                normalTitle.style.opacity = (progress - 0.75) * 4;
+                normalTitle.classList.add('show');
+            } else {
+                normalTitle.classList.remove('show');
+                normalTitle.style.opacity = 0;
+            }
         });
     </script>
 </body>
